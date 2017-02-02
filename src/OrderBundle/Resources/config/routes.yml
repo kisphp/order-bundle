@@ -1,0 +1,3 @@
+order_add_to_cart:
+    path: /order/add
+    defaults: { _controller: OrderBundle:Cart:add }
