@@ -2,7 +2,7 @@
 
 namespace Kisphp\OrderBundle\Cart;
 
-use Kisphp\Admin\MainBundle\Entity\KisphpEntityInterface;
+use Kisphp\Entity\KisphpEntityInterface;
 
 class Cart
 {
@@ -22,6 +22,11 @@ class Cart
     protected $prices = [];
 
     /**
+     * @var array
+     */
+    protected $images = [];
+
+    /**
      * @param KisphpEntityInterface $product
      * @param int $quantity
      *
@@ -31,6 +36,10 @@ class Cart
     {
         $this->products[$product->getId()] = $product;
         $this->prices[$product->getId()] = $product->getPrice();
+
+        foreach ($product->getImages() as $image) {
+            $this->images[$product->getId()][$image->getId()] = $image;
+        }
 
         $this->addQuantity($product, $quantity);
 
@@ -82,6 +91,7 @@ class Cart
         unset($this->products[$product->getId()]);
         unset($this->quantities[$product->getId()]);
         unset($this->prices[$product->getId()]);
+        unset($this->images[$product->getId()]);
 
         return $this;
     }
@@ -94,6 +104,7 @@ class Cart
         $this->products = [];
         $this->quantities = [];
         $this->prices = [];
+        $this->images = [];
 
         return $this;
     }
@@ -104,7 +115,6 @@ class Cart
     public function getTotalPrice()
     {
         $total = 0;
-
         foreach ($this->prices as $idProduct => $price) {
             $total += $price * $this->quantities[$idProduct];
         }
@@ -112,8 +122,32 @@ class Cart
         return $total;
     }
 
+    /**
+     * @return int
+     */
     public function getCartItemsCount()
     {
         return count($this->products);
+    }
+
+    /**
+     * @return KisphpEntityInterface[]
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
+    /**
+     * @param int $productId
+     *
+     * @return int
+     */
+    public function getQuantity($productId)
+    {
+        if (!isset($this->quantities[$productId])) {
+            return 0;
+        }
+        return $this->quantities[$productId];
     }
 }

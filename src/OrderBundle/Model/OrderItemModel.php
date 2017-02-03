@@ -4,6 +4,7 @@ namespace Kisphp\OrderBundle\Model;
 
 use Kisphp\Admin\MainBundle\Entity\ArticlesAttached;
 use Kisphp\Admin\MainBundle\Entity\ArticlesEntity;
+use Kisphp\Entity\KisphpEntityInterface;
 use Kisphp\Model\AbstractModel;
 use Kisphp\OrderBundle\Entity\OrderEntity;
 use Kisphp\OrderBundle\Entity\OrderItemEntity;
@@ -13,27 +14,27 @@ class OrderItemModel extends AbstractModel
     const REPOSITORY = 'OrderBundle:OrderItemEntity';
 
     /**
-     * @param ArticlesEntity $entity
+     * @param KisphpEntityInterface $product
      * @param OrderEntity $order
      *
      * @return OrderItemEntity
      */
-    public function createFromProduct(ArticlesEntity $entity, OrderEntity $order)
+    public function createFromProduct(KisphpEntityInterface $product, OrderEntity $order)
     {
         $orderItem = $this->createOrderItem();
-        $orderItem->setIdProduct($entity->getId());
-        $orderItem->setIdCategory($entity->getIdCategory());
+        $orderItem->setIdProduct($product->getId());
+        $orderItem->setIdCategory($product->getIdCategory());
         $orderItem->setOrder($order);
-        $orderItem->setProductCode($entity->getProductCode());
-        $orderItem->setProductSku($entity->getProductCode());
-        $orderItem->setProductPrice($entity->getPrice());
-        $orderItem->setProductPriceOld($entity->getPriceOld());
-        $orderItem->setProductCurrency($entity->getCurrency());
-        $orderItem->setProductTitle($entity->getTitle());
-        $orderItem->setProductDescription($entity->getDescription());
+        $orderItem->setProductCode($product->getProductCode());
+        $orderItem->setProductSku($product->getProductCode());
+        $orderItem->setProductPrice($product->getPrice());
+        $orderItem->setProductPriceOld($product->getPriceOld());
+        $orderItem->setProductCurrency($product->getCurrency());
+        $orderItem->setProductTitle($product->getTitle());
+        $orderItem->setProductDescription($product->getDescription());
 
         /** @var ArticlesAttached[] $images */
-        $images = $entity->getImages();
+        $images = $product->getImages();
         if (count($images) > 0) {
             $orderItem->setProductImageFilename($images[0]->getFilename());
             $orderItem->setProductImageDirectory($images[0]->getDirectory());

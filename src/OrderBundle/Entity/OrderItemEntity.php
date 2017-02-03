@@ -3,13 +3,13 @@
 namespace Kisphp\OrderBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Kisphp\Entity\KisphpInterface;
+use Kisphp\Entity\KisphpEntityInterface;
 
 /**
  * @ORM\Entity()
  * @ORM\Table(name="sales_items", options={"collate": "utf8_general_ci", "charset": "utf8"})
  */
-class OrderItemEntity implements KisphpInterface
+class OrderItemEntity implements KisphpEntityInterface
 {
     /**
      * @var string

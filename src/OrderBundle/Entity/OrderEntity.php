@@ -4,14 +4,14 @@ namespace Kisphp\OrderBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Kisphp\Entity\KisphpInterface;
+use Kisphp\Entity\KisphpEntityInterface;
 
 /**
  * @ORM\Entity()
  * @ORM\Table(name="sales", options={"collate": "utf8_general_ci", "charset": "utf8"})
  * @ORM\HasLifecycleCallbacks()
  */
-class OrderEntity implements KisphpInterface
+class OrderEntity implements KisphpEntityInterface
 {
     /**
      * @var string
