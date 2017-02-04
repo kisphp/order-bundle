@@ -1,7 +1,3 @@
 order_add_to_cart:
     path: /order/add
     defaults: { _controller: OrderBundle:Cart:add }
-
-order_checkout_view:
-    path: /checkout
-    defaults: { _controller: OrderBundle:Checkout:index }
