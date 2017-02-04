@@ -5,6 +5,7 @@ namespace Kisphp\OrderBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CartController extends Controller
 {
@@ -20,8 +21,11 @@ class CartController extends Controller
         $cart->addProduct($product, $quantity);
 
         $data = [
-            'totalPrice' => $cart->getTotalPrice(),
-            'totalQuantity' => $cart->getCartItemsCount(),
+            'code' => Response::HTTP_OK,
+            'cart' => [
+                'totalPrice' => $cart->getTotalPrice(),
+                'totalQuantity' => $cart->getCartItemsCount(),
+            ],
         ];
 
         return new JsonResponse($data);
