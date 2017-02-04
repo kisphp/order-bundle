@@ -3,7 +3,6 @@
 namespace Kisphp\OrderBundle\Model;
 
 use Kisphp\Admin\MainBundle\Entity\ArticlesAttached;
-use Kisphp\Admin\MainBundle\Entity\ArticlesEntity;
 use Kisphp\Entity\KisphpEntityInterface;
 use Kisphp\Model\AbstractModel;
 use Kisphp\OrderBundle\Entity\OrderEntity;

@@ -148,6 +148,7 @@ class Cart
         if (!isset($this->quantities[$productId])) {
             return 0;
         }
+
         return $this->quantities[$productId];
     }
 }
