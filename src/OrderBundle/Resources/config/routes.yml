@@ -1,3 +1,14 @@
 order_add_to_cart:
-    path: /order/add
+    path: /order/add/product
     defaults: { _controller: OrderBundle:Cart:add }
+    methods: [POST]
+
+order_update_cart:
+    path: /order/update/product
+    defaults: { _controller: OrderBundle:Cart:update }
+    methods: [POST]
+
+order_remove_from_cart:
+    path: /order/remove/product
+    defaults: { _controller: OrderBundle:Cart:remove }
+    methods: [POST]
