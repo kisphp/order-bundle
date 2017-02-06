@@ -2,7 +2,7 @@
   "name": "kisphp/order-bundle",
   "license": "MIT",
   "require": {
-    "php": ">=7.0"
+    "php": ">=7.0",
     "kisphp/tools": "dev-master"
   },
   "require-dev": {
