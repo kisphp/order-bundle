@@ -5,12 +5,12 @@ namespace Kisphp\OrderBundle\Model;
 use Doctrine\ORM\EntityManager;
 use Kisphp\Admin\MainBundle\Entity\ArticlesEntity;
 use Kisphp\Model\AbstractModel;
-use Kisphp\OrderBundle\Entity\OrderEntity;
+use Kisphp\OrderBundle\Entity\SalesEntity;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-class OrderModel extends AbstractModel
+class SalesModel extends AbstractModel
 {
-    const REPOSITORY = 'OrderBundle:OrderEntity';
+    const REPOSITORY = 'OrderBundle:SalesEntity';
 
     /**
      * @var Session
@@ -38,19 +38,19 @@ class OrderModel extends AbstractModel
     }
 
     /**
-     * @return OrderEntity
+     * @return SalesEntity
      */
     protected function getCartBySessionId()
     {
         $this->startSession();
 
-        /** @var OrderEntity $order */
+        /** @var SalesEntity $order */
         $order = $this->getRepository()->findOneBy([
             'session_id' => $this->session->getId(),
         ]);
 
         if ($order === null) {
-            $order = new OrderEntity();
+            $order = new SalesEntity();
             $order->setSessionId($this->session->getId());
 
             $this->save($order);
@@ -64,7 +64,7 @@ class OrderModel extends AbstractModel
         $order = $this->getCartBySessionId();
         $order->setSessionId($this->session->getId());
 
-        $orderItemModel = new OrderItemModel($this->em);
+        $orderItemModel = new SalesItemModel($this->em);
         $orderItem = $orderItemModel->createFromProduct($product, $order);
 
         $orderItem->addQuantity($quantity);

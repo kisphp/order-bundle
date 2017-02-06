@@ -6,10 +6,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Kisphp\Entity\KisphpEntityInterface;
 
 /**
- * @ORM\Entity()
+ * @ORM\MappedSuperclass()
  * @ORM\Table(name="sales_items", options={"collate": "utf8_general_ci", "charset": "utf8"})
+ * @ORM\HasLifecycleCallbacks()
  */
-class OrderItemEntity implements KisphpEntityInterface
+class SalesItemEntity implements KisphpEntityInterface
 {
     /**
      * @var string
@@ -28,9 +29,9 @@ class OrderItemEntity implements KisphpEntityInterface
     protected $id_order;
 
     /**
-     * @var OrderEntity
+     * @var SalesEntity
      *
-     * @ORM\ManyToOne(targetEntity="OrderEntity", inversedBy="items")
+     * @ORM\ManyToOne(targetEntity="SalesEntity", inversedBy="items")
      * @ORM\JoinColumn(name="id_order", referencedColumnName="id")
      */
     protected $order;
@@ -55,6 +56,12 @@ class OrderItemEntity implements KisphpEntityInterface
      * @ORM\Column(type="integer", options={"unsigned": true, "default": 0})
      */
     protected $quantity = 0;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     */
+    protected $registered;
 
     /**
      * @var string
@@ -120,6 +127,32 @@ class OrderItemEntity implements KisphpEntityInterface
     protected $product_image_filename;
 
     /**
+     * @ORM\PrePersist()
+     */
+    public function updateModifiedDatetime()
+    {
+        if ($this->registered === null) {
+            $this->setRegistered(new \DateTime());
+        }
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getRegistered()
+    {
+        return $this->registered;
+    }
+
+    /**
+     * @param \DateTime $registered
+     */
+    public function setRegistered($registered)
+    {
+        $this->registered = $registered;
+    }
+
+    /**
      * @return string
      */
     public function getId()
@@ -144,7 +177,7 @@ class OrderItemEntity implements KisphpEntityInterface
     }
 
     /**
-     * @return OrderEntity
+     * @return SalesEntity
      */
     public function getOrder()
     {
@@ -152,9 +185,9 @@ class OrderItemEntity implements KisphpEntityInterface
     }
 
     /**
-     * @param OrderEntity $order
+     * @param SalesEntity $order
      */
-    public function setOrder(OrderEntity $order)
+    public function setOrder(SalesEntity $order)
     {
         $this->order = $order;
         $this->setIdOrder($order->getId());

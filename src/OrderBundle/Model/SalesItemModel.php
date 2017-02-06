@@ -5,22 +5,22 @@ namespace Kisphp\OrderBundle\Model;
 use Kisphp\Admin\MainBundle\Entity\ArticlesAttached;
 use Kisphp\Entity\KisphpEntityInterface;
 use Kisphp\Model\AbstractModel;
-use Kisphp\OrderBundle\Entity\OrderEntity;
-use Kisphp\OrderBundle\Entity\OrderItemEntity;
+use Kisphp\OrderBundle\Entity\SalesEntity;
+use Kisphp\OrderBundle\Entity\SalesItemEntity;
 
-class OrderItemModel extends AbstractModel
+class SalesItemModel extends AbstractModel
 {
-    const REPOSITORY = 'OrderBundle:OrderItemEntity';
+    const REPOSITORY = 'OrderBundle:SalesItemEntity';
 
     /**
      * @param KisphpEntityInterface $product
-     * @param OrderEntity $order
+     * @param SalesEntity $order
      *
-     * @return OrderItemEntity
+     * @return SalesItemEntity
      */
-    public function createFromProduct(KisphpEntityInterface $product, OrderEntity $order)
+    public function createFromProduct(KisphpEntityInterface $product, SalesEntity $order)
     {
-        $orderItem = $this->createOrderItem();
+        $orderItem = $this->createSalesItem();
         $orderItem->setIdProduct($product->getId());
         $orderItem->setIdCategory($product->getIdCategory());
         $orderItem->setOrder($order);
@@ -43,10 +43,10 @@ class OrderItemModel extends AbstractModel
     }
 
     /**
-     * @return OrderItemEntity
+     * @return SalesItemEntity
      */
-    public function createOrderItem()
+    public function createSalesItem()
     {
-        return new OrderItemEntity();
+        return new SalesItemEntity();
     }
 }

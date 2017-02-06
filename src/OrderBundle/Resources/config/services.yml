@@ -1,6 +1,6 @@
 services:
-  model.order_sale:
-    class: Kisphp\OrderBundle\Model\OrderModel
+  model.sales:
+    class: Kisphp\OrderBundle\Model\SalesModel
     arguments:
       - @doctrine.orm.entity_manager
       - @session

@@ -7,11 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Kisphp\Entity\KisphpEntityInterface;
 
 /**
- * @ORM\Entity()
+ * @ORM\MappedSuperclass()
  * @ORM\Table(name="sales", options={"collate": "utf8_general_ci", "charset": "utf8"})
  * @ORM\HasLifecycleCallbacks()
  */
-class OrderEntity implements KisphpEntityInterface
+class SalesEntity implements KisphpEntityInterface
 {
     /**
      * @var string
@@ -37,9 +37,9 @@ class OrderEntity implements KisphpEntityInterface
     protected $session_id;
 
     /**
-     * @var OrderItemEntity
+     * @var SalesItemEntity
      *
-     * @ORM\OneToMany(targetEntity="OrderItemEntity", mappedBy="order")
+     * @ORM\OneToMany(targetEntity="SalesItemEntity", mappedBy="order")
      */
     protected $items;
 
@@ -49,6 +49,33 @@ class OrderEntity implements KisphpEntityInterface
      * @ORM\Column(type="integer", options={"unsigned": true})
      */
     protected $status = 1;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     */
+    protected $registered;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $company_name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $company_cif;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $company_reg_num;
 
     /**
      * @var string
@@ -91,12 +118,6 @@ class OrderEntity implements KisphpEntityInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $customer_email;
-
-    /**
-     * @var \DateTime
-     * @ORM\Column(type="datetime")
-     */
-    protected $registered;
 
     public function __construct()
     {
@@ -170,7 +191,7 @@ class OrderEntity implements KisphpEntityInterface
     }
 
     /**
-     * @return OrderItemEntity
+     * @return SalesItemEntity
      */
     public function getItems()
     {
@@ -178,7 +199,7 @@ class OrderEntity implements KisphpEntityInterface
     }
 
     /**
-     * @param OrderItemEntity $items
+     * @param SalesItemEntity $items
      */
     public function setItems($items)
     {
@@ -295,5 +316,53 @@ class OrderEntity implements KisphpEntityInterface
     public function setCustomerEmail($customer_email)
     {
         $this->customer_email = $customer_email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCompanyName()
+    {
+        return $this->company_name;
+    }
+
+    /**
+     * @param string $company_name
+     */
+    public function setCompanyName($company_name)
+    {
+        $this->company_name = $company_name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCompanyCif()
+    {
+        return $this->company_cif;
+    }
+
+    /**
+     * @param string $company_cif
+     */
+    public function setCompanyCif($company_cif)
+    {
+        $this->company_cif = $company_cif;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCompanyRegNum()
+    {
+        return $this->company_reg_num;
+    }
+
+    /**
+     * @param string $company_reg_num
+     */
+    public function setCompanyRegNum($company_reg_num)
+    {
+        $this->company_reg_num = $company_reg_num;
     }
 }
