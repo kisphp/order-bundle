@@ -2,12 +2,12 @@
   "name": "kisphp/order-bundle",
   "license": "MIT",
   "require": {
-    "php": ">=7.0"
+    "php": ">=7.0",
+    "kisphp/tools": "dev-master"
   },
   "require-dev": {
     "phpunit/phpunit": "~5.7",
-    "friendsofphp/php-cs-fixer": "~1.13",
-    "kisphp/tools": "dev-master"
+    "friendsofphp/php-cs-fixer": "~1.13"
   },
   "autoload": {
     "psr-4": {
