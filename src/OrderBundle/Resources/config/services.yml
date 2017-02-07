@@ -1,1 +1,11 @@
 services:
+  model.sales:
+    class: Kisphp\OrderBundle\Model\SalesModel
+    arguments:
+      - "@doctrine.orm.entity_manager"
+      - "@session"
+
+  cart.factory:
+    class: Kisphp\OrderBundle\Cart\CartFactory
+    arguments:
+      - "@session"
