@@ -2,23 +2,21 @@
 
 namespace Kisphp\OrderBundle\Model;
 
-use Kisphp\Admin\MainBundle\Entity\ArticlesAttached;
-use Kisphp\Entity\KisphpEntityInterface;
+use Kisphp\Entity\AttachedInterface;
 use Kisphp\Model\AbstractModel;
-use Kisphp\OrderBundle\Entity\SalesEntity;
+use Kisphp\OrderBundle\Entity\ProductInterface;
+use Kisphp\OrderBundle\Entity\SalesEntityInterface;
 use Kisphp\OrderBundle\Entity\SalesItemEntity;
 
-class SalesItemModel extends AbstractModel
+abstract class SalesItemModel extends AbstractModel
 {
-    const REPOSITORY = 'OrderBundle:SalesItemEntity';
-
     /**
-     * @param KisphpEntityInterface $product
-     * @param SalesEntity $order
+     * @param ProductInterface $product
+     * @param SalesEntityInterface $order
      *
      * @return SalesItemEntity
      */
-    public function createFromProduct(KisphpEntityInterface $product, SalesEntity $order)
+    public function createFromProduct(ProductInterface $product, SalesEntityInterface $order)
     {
         $orderItem = $this->createSalesItem();
         $orderItem->setIdProduct($product->getId());
@@ -32,7 +30,7 @@ class SalesItemModel extends AbstractModel
         $orderItem->setProductTitle($product->getTitle());
         $orderItem->setProductDescription($product->getDescription());
 
-        /** @var ArticlesAttached[] $images */
+        /** @var AttachedInterface[] $images */
         $images = $product->getImages();
         if (count($images) > 0) {
             $orderItem->setProductImageFilename($images[0]->getFilename());

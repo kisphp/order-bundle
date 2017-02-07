@@ -4,47 +4,20 @@ namespace Kisphp\OrderBundle\Model;
 
 use Doctrine\ORM\EntityManager;
 use Kisphp\Admin\MainBundle\Entity\ArticlesEntity;
+use Kisphp\Entity\KisphpEntityInterface;
 use Kisphp\Model\AbstractModel;
 use Kisphp\OrderBundle\Entity\SalesEntity;
+use Kisphp\OrderBundle\Entity\SalesEntityInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-class SalesModel extends AbstractModel
+abstract class SalesModel extends AbstractModel
 {
-    const REPOSITORY = 'OrderBundle:SalesEntity';
-
     /**
-     * @var Session
-     */
-    protected $session;
-
-    /**
-     * @param EntityManager $entityManager
-     * @param Session $session
-     */
-    public function __construct(EntityManager $entityManager, Session $session)
-    {
-        parent::__construct($entityManager);
-
-        $this->session = $session;
-
-        $this->startSession();
-    }
-
-    protected function startSession()
-    {
-        if ($this->session->isStarted() === false) {
-            $this->session->start();
-        }
-    }
-
-    /**
-     * @return SalesEntity
+     * @return SalesEntityInterface
      */
     protected function getCartBySessionId()
     {
-        $this->startSession();
-
-        /** @var SalesEntity $order */
+        /** @var SalesEntityInterface $order */
         $order = $this->getRepository()->findOneBy([
             'session_id' => $this->session->getId(),
         ]);
@@ -59,10 +32,14 @@ class SalesModel extends AbstractModel
         return $order;
     }
 
-    public function addProductToCart(ArticlesEntity $product, $quantity)
+    public function getSalesList()
+    {
+        return $this->getRepository()->findAll();
+    }
+
+    public function addProductToCart(KisphpEntityInterface $product, $quantity)
     {
         $order = $this->getCartBySessionId();
-        $order->setSessionId($this->session->getId());
 
         $orderItemModel = new SalesItemModel($this->em);
         $orderItem = $orderItemModel->createFromProduct($product, $order);

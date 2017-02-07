@@ -11,7 +11,7 @@ use Kisphp\Entity\KisphpEntityInterface;
  * @ORM\Table(name="sales", options={"collate": "utf8_general_ci", "charset": "utf8"})
  * @ORM\HasLifecycleCallbacks()
  */
-class SalesEntity implements KisphpEntityInterface
+class SalesEntity implements KisphpEntityInterface, SalesEntityInterface
 {
     /**
      * @var string
@@ -28,13 +28,6 @@ class SalesEntity implements KisphpEntityInterface
      * @ORM\Column(type="integer", nullable=true, options={"unsigned": true})
      */
     protected $id_user;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    protected $session_id;
 
     /**
      * @var SalesItemEntity
@@ -172,22 +165,6 @@ class SalesEntity implements KisphpEntityInterface
     public function setIdUser($id_user)
     {
         $this->id_user = $id_user;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSessionId()
-    {
-        return $this->session_id;
-    }
-
-    /**
-     * @param string $session_id
-     */
-    public function setSessionId($session_id)
-    {
-        $this->session_id = $session_id;
     }
 
     /**

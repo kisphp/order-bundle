@@ -29,7 +29,7 @@ class SalesItemEntity implements KisphpEntityInterface
     protected $id_order;
 
     /**
-     * @var SalesEntity
+     * @var SalesEntityInterface
      *
      * @ORM\ManyToOne(targetEntity="SalesEntity", inversedBy="items")
      * @ORM\JoinColumn(name="id_order", referencedColumnName="id")
@@ -177,7 +177,7 @@ class SalesItemEntity implements KisphpEntityInterface
     }
 
     /**
-     * @return SalesEntity
+     * @return SalesEntityInterface
      */
     public function getOrder()
     {
@@ -185,9 +185,9 @@ class SalesItemEntity implements KisphpEntityInterface
     }
 
     /**
-     * @param SalesEntity $order
+     * @param SalesEntityInterface $order
      */
-    public function setOrder(SalesEntity $order)
+    public function setOrder(SalesEntityInterface $order)
     {
         $this->order = $order;
         $this->setIdOrder($order->getId());
