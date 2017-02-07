@@ -1,6 +1,6 @@
 <?php
-namespace Kisphp\OrderBundle\Entity;
 
+namespace Kisphp\OrderBundle\Entity;
 
 /**
  * @ORM\MappedSuperclass()
