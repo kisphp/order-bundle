@@ -10,7 +10,7 @@ use Kisphp\Entity\KisphpEntityInterface;
  * @ORM\Table(name="sales_items", options={"collate": "utf8_general_ci", "charset": "utf8"})
  * @ORM\HasLifecycleCallbacks()
  */
-class SalesItemEntity implements KisphpEntityInterface
+class SalesItemEntity implements KisphpEntityInterface, SalesItemEntityInterface
 {
     /**
      * @var string

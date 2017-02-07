@@ -8,7 +8,7 @@ use Kisphp\OrderBundle\Entity\ProductInterface;
 use Kisphp\OrderBundle\Entity\SalesEntityInterface;
 use Kisphp\OrderBundle\Entity\SalesItemEntity;
 
-abstract class SalesItemModel extends AbstractModel
+abstract class SalesItemModel extends AbstractModel implements SalesItemModelInterface
 {
     /**
      * @param ProductInterface $product
@@ -41,7 +41,7 @@ abstract class SalesItemModel extends AbstractModel
     }
 
     /**
-     * @return SalesItemEntity
+     * @return SalesItemEntityInterface
      */
     public function createSalesItem()
     {

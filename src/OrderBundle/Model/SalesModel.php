@@ -10,8 +10,16 @@ use Kisphp\OrderBundle\Entity\SalesEntity;
 use Kisphp\OrderBundle\Entity\SalesEntityInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-abstract class SalesModel extends AbstractModel
+abstract class SalesModel extends AbstractModel implements SalesModelInterface
 {
+    protected $factory;
+
+    public function __construct(EntityManager $em, Fa)
+    {
+        parent::__construct($em);
+    }
+
+
     /**
      * @return SalesEntityInterface
      */
