@@ -7,6 +7,7 @@ use Kisphp\Model\AbstractModel;
 use Kisphp\OrderBundle\Entity\ProductInterface;
 use Kisphp\OrderBundle\Entity\SalesEntityInterface;
 use Kisphp\OrderBundle\Entity\SalesItemEntity;
+use Kisphp\OrderBundle\Entity\SalesItemEntityInterface;
 
 abstract class SalesItemModel extends AbstractModel implements SalesItemModelInterface
 {
