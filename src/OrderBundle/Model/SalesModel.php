@@ -12,13 +12,21 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 abstract class SalesModel extends AbstractModel implements SalesModelInterface
 {
+    /**
+     * @var FactoryModelInterface
+     */
     protected $factory;
 
-    public function __construct(EntityManager $em, Fa)
+    /**
+     * @param EntityManager $em
+     * @param FactoryModelInterface $factoryModel
+     */
+    public function __construct(EntityManager $em, FactoryModelInterface $factoryModel)
     {
         parent::__construct($em);
-    }
 
+        $this->factory = $factoryModel;
+    }
 
     /**
      * @return SalesEntityInterface
@@ -27,12 +35,11 @@ abstract class SalesModel extends AbstractModel implements SalesModelInterface
     {
         /** @var SalesEntityInterface $order */
         $order = $this->getRepository()->findOneBy([
-            'session_id' => $this->session->getId(),
+            'session_id' => $this->factory->getSession()->getId(),
         ]);
 
         if ($order === null) {
             $order = new SalesEntity();
-            $order->setSessionId($this->session->getId());
 
             $this->save($order);
         }
@@ -49,7 +56,7 @@ abstract class SalesModel extends AbstractModel implements SalesModelInterface
     {
         $order = $this->getCartBySessionId();
 
-        $orderItemModel = new SalesItemModel($this->em);
+        $orderItemModel = $this->factory->createSalesItemModel();
         $orderItem = $orderItemModel->createFromProduct($product, $order);
 
         $orderItem->addQuantity($quantity);

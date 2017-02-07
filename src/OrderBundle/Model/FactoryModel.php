@@ -4,7 +4,7 @@ namespace Kisphp\OrderBundle\Model;
 
 use Doctrine\ORM\EntityManager;
 
-abstract class FactoryModel
+abstract class FactoryModel implements FactoryModelInterface
 {
     /**
      * @var EntityManager
@@ -18,14 +18,4 @@ abstract class FactoryModel
     {
         $this->em = $em;
     }
-
-    /**
-     * @return SalesModelInterface
-     */
-    abstract public function createSalesModel();
-
-    /**
-     * @return SalesItemModelInterface
-     */
-    abstract public function createSalesItemModel();
 }
