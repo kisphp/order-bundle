@@ -3,12 +3,10 @@
 namespace Kisphp\OrderBundle\Model;
 
 use Doctrine\ORM\EntityManager;
-use Kisphp\Admin\MainBundle\Entity\ArticlesEntity;
 use Kisphp\Entity\KisphpEntityInterface;
 use Kisphp\Model\AbstractModel;
 use Kisphp\OrderBundle\Entity\SalesEntity;
 use Kisphp\OrderBundle\Entity\SalesEntityInterface;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 abstract class SalesModel extends AbstractModel implements SalesModelInterface
 {
