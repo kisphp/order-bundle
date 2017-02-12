@@ -161,6 +161,14 @@ class SalesItemEntity implements KisphpEntityInterface, SalesItemEntityInterface
     }
 
     /**
+     * @param string $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
      * @return string
      */
     public function getIdOrder()
