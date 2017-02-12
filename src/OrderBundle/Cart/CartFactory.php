@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class CartFactory
 {
+    const CART_SESSION_NAME = 'cart';
+
     /**
      * @var SessionInterface
      */
@@ -36,11 +38,11 @@ class CartFactory
      */
     protected function createCart()
     {
-        if ($this->session->has('cart') === false) {
-            $this->session->set('cart', $this->createCartObject());
+        if ($this->session->has(static::CART_SESSION_NAME) === false) {
+            $this->session->set(static::CART_SESSION_NAME, $this->createCartObject());
         }
 
-        return $this->session->get('cart');
+        return $this->session->get(static::CART_SESSION_NAME);
     }
 
     /**

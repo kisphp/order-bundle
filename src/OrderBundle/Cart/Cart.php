@@ -3,6 +3,7 @@
 namespace Kisphp\OrderBundle\Cart;
 
 use Kisphp\Entity\KisphpEntityInterface;
+use Kisphp\OrderBundle\Entity\SalesItemEntityInterface;
 
 class Cart
 {
@@ -42,6 +43,23 @@ class Cart
         }
 
         $this->addQuantity($product, $quantity);
+
+        return $this;
+    }
+
+    /**
+     * @param SalesItemEntityInterface $entity
+     *
+     * @return $this
+     */
+    public function addProductFromSales(SalesItemEntityInterface $entity)
+    {
+        $quantity = $entity->getQuantity();
+
+        $this->products[$entity->getId()] = $entity;
+        $this->prices[$entity->getId()] = $entity->getProductPrice();
+
+        $this->quantities[$entity->getId()] = $quantity;
 
         return $this;
     }
