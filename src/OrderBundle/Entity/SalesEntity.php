@@ -9,6 +9,7 @@ use Kisphp\Entity\KisphpEntityInterface;
 /**
  * @ORM\Entity
  * @ORM\Table(name="sales", options={"collate": "utf8_general_ci", "charset": "utf8"})
+ * @ORM\Entity(repositoryClass="Kisphp\OrderBundle\Entity\Repository\SalesRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class SalesEntity implements KisphpEntityInterface, SalesEntityInterface

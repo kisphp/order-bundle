@@ -3,6 +3,7 @@
 namespace tests\Cart;
 
 use Kisphp\OrderBundle\Cart\Cart;
+use Kisphp\OrderBundle\Entity\SalesItemEntity;
 use tests\Cart\Data\ProductEntity;
 use tests\Cart\Data\ProductImageEntity;
 
@@ -86,6 +87,21 @@ class CartTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(0, $cart->getCartItemsCount(), 'It shouldn\'t be any product in cart');
         $this->assertEquals(0, count($cart->getProducts()), 'It shouldn\'t be any product in cart');
+    }
+
+    public function testCreateCartFromOrderSales()
+    {
+        $product = new SalesItemEntity();
+        $product->setIdOrder(1);
+        $product->setId(1);
+        $product->setProductPrice(120);
+        $product->setQuantity(2);
+
+        $cart = new Cart();
+        $cart->addProductFromSales($product);
+
+        $this->assertEquals(240, $cart->getTotalPrice(), 'Cart total value should be 240');
+        $this->assertEquals(2, $cart->getQuantity(1), 'You should have quantity = 2 for this product');
     }
 
     protected function createProduct()
