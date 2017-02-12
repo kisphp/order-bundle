@@ -2,7 +2,6 @@
 
 namespace Kisphp\OrderBundle\Model;
 
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Kisphp\Entity\KisphpEntityInterface;
 use Kisphp\Model\AbstractModel;
