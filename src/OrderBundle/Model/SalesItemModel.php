@@ -11,11 +11,13 @@ use Kisphp\OrderBundle\Entity\SalesItemEntityInterface;
 
 abstract class SalesItemModel extends AbstractModel implements SalesItemModelInterface
 {
+    const REPOSITORY = 'OrderBundle:SalesItemEntity';
+
     /**
      * @param ProductInterface $product
      * @param SalesEntityInterface $order
      *
-     * @return SalesItemEntity
+     * @return SalesItemEntityInterface
      */
     public function createFromProduct(ProductInterface $product, SalesEntityInterface $order)
     {

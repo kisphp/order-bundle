@@ -67,7 +67,7 @@ interface SalesItemEntityInterface
     /**
      * @param int $quantity
      */
-    public function addQuantity($quantity);
+    public function setQuantity($quantity);
 
     /**
      * @return string

@@ -2,23 +2,23 @@
 
 namespace Kisphp\OrderBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Kisphp\Entity\KisphpEntityInterface;
 
 /**
- * @ORM\MappedSuperclass()
+ * @ORM\Entity
  * @ORM\Table(name="sales", options={"collate": "utf8_general_ci", "charset": "utf8"})
  * @ORM\HasLifecycleCallbacks()
  */
 class SalesEntity implements KisphpEntityInterface, SalesEntityInterface
 {
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(type="guid")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\Column(type="integer", options={"unsigned": true})
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 

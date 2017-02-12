@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Kisphp\Entity\KisphpEntityInterface;
 
 /**
- * @ORM\MappedSuperclass()
+ * @ORM\Entity
  * @ORM\Table(name="sales_items", options={"collate": "utf8_general_ci", "charset": "utf8"})
  * @ORM\HasLifecycleCallbacks()
  */
@@ -15,16 +15,16 @@ class SalesItemEntity implements KisphpEntityInterface, SalesItemEntityInterface
     /**
      * @var string
      *
-     * @ORM\Column(type="guid")
+     * @ORM\Column(type="integer", options={"unsigned": true})
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="UUID")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=36)
+     * @ORM\Column(type="integer", options={"unsigned": true})
      */
     protected $id_order;
 
@@ -108,7 +108,7 @@ class SalesItemEntity implements KisphpEntityInterface, SalesItemEntityInterface
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $product_description;
 
@@ -220,9 +220,9 @@ class SalesItemEntity implements KisphpEntityInterface, SalesItemEntityInterface
     /**
      * @param int $quantity
      */
-    public function addQuantity($quantity)
+    public function setQuantity($quantity)
     {
-        $this->quantity += $quantity;
+        $this->quantity = $quantity;
     }
 
     /**
