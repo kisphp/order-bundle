@@ -19,7 +19,10 @@ class CartController extends Controller
         $idProduct = $request->request->getInt('idProduct');
         $quantity = $request->request->getInt('quantity');
 
-        $product = $this->get('model.articles')->getArticleById($idProduct);
+        $product = $this->get('model.factory')
+            ->createProductsModel()
+            ->getArticleById($idProduct)
+        ;
 
         $cart = $this->get('cart.factory')->getCart();
 
@@ -46,7 +49,10 @@ class CartController extends Controller
         $idProduct = $request->request->getInt('idProduct');
         $quantity = $request->request->getInt('quantity');
 
-        $product = $this->get('model.articles')->getArticleById($idProduct);
+        $product = $this->get('model.factory')
+            ->createProductsModel()
+            ->getArticleById($idProduct)
+        ;
 
         $cart = $this->get('cart.factory')->getCart();
 
@@ -72,7 +78,10 @@ class CartController extends Controller
     {
         $idProduct = $request->request->getInt('idProduct');
 
-        $product = $this->get('model.articles')->getArticleById($idProduct);
+        $product = $this->get('model.factory')
+            ->createProductsModel()
+            ->getArticleById($idProduct)
+        ;
 
         $cart = $this->get('cart.factory')->getCart();
 
