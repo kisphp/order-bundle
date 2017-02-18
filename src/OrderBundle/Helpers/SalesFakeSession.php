@@ -4,7 +4,6 @@ namespace Kisphp\OrderBundle\Helpers;
 
 use Symfony\Component\HttpFoundation\Session\SessionBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\HttpFoundation\Session\Storage\MetadataBag;
 
 class SalesFakeSession implements SessionInterface
 {
@@ -129,5 +128,4 @@ class SalesFakeSession implements SessionInterface
     {
         // TODO: Implement getMetadataBag() method.
     }
-
 }
