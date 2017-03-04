@@ -117,14 +117,14 @@ class SalesItemEntity implements KisphpEntityInterface, SalesItemEntityInterface
      *
      * @ORM\Column(type="string", length=255)
      */
-    protected $product_image_directory;
+    protected $product_image_directory = 'default';
 
     /**
      * @var string
      *
      * @ORM\Column(type="string", length=255)
      */
-    protected $product_image_filename;
+    protected $product_image_filename = 'no-image.png';
 
     /**
      * @ORM\PrePersist()
