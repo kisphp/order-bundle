@@ -7,6 +7,7 @@ use Kisphp\Entity\KisphpEntityInterface;
 use Kisphp\Model\AbstractModel;
 use Kisphp\OrderBundle\Entity\SalesEntity;
 use Kisphp\OrderBundle\Entity\SalesEntityInterface;
+use Kisphp\OrderBundle\Exceptions\MethodNotFound;
 
 abstract class SalesModel extends AbstractModel implements SalesModelInterface
 {
@@ -32,13 +33,32 @@ abstract class SalesModel extends AbstractModel implements SalesModelInterface
      * @param array $formData
      *
      * @return SalesEntity
+     *
+     * @throws MethodNotFound
      */
     public function createFromFormData(array $formData)
     {
+        $method = 'populate' . ucfirst($formData['type']);
+
+        if ( ! method_exists($this, $method)) {
+            throw new MethodNotFound();
+        }
+
+        $salesEntity = call_user_func_array([$this, $method], [$formData]);
+
+        $this->save($salesEntity);
+
+        return $salesEntity;
+    }
+
+    /**
+     * @param array $formData
+     *
+     * @return SalesEntity
+     */
+    protected function populatePerson($formData)
+    {
         $salesEntity = $this->createSalesEntity();
-        $salesEntity->setCompanyName($formData['company_name']);
-        $salesEntity->setCompanyCif($formData['company_cif']);
-        $salesEntity->setCompanyRegNum($formData['company_registration_number']);
 
         $salesEntity->setCustomerName($formData['customer_name']);
         $salesEntity->setCustomerEmail($formData['customer_email']);
@@ -47,7 +67,21 @@ abstract class SalesModel extends AbstractModel implements SalesModelInterface
         $salesEntity->setCustomerCountry($formData['customer_country']);
         $salesEntity->setCustomerCity($formData['customer_city']);
 
-        $this->save($salesEntity);
+        return $salesEntity;
+    }
+
+    /**
+     * @param array $formData
+     *
+     * @return SalesEntity
+     */
+    protected function populateCompany(array $formData)
+    {
+        $salesEntity = $this->createSalesEntity();
+
+        $salesEntity->setCompanyName($formData['company_name']);
+        $salesEntity->setCompanyCif($formData['company_cif']);
+        $salesEntity->setCompanyRegNum($formData['company_registration_number']);
 
         return $salesEntity;
     }
