@@ -38,6 +38,13 @@ class SalesEntity implements KisphpEntityInterface, SalesEntityInterface
     protected $items;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=32, nullable=true)
+     */
+    protected $type;
+
+    /**
      * @var int
      *
      * @ORM\Column(type="integer", options={"unsigned": true})
@@ -342,5 +349,21 @@ class SalesEntity implements KisphpEntityInterface, SalesEntityInterface
     public function setCompanyRegNum($company_reg_num)
     {
         $this->company_reg_num = $company_reg_num;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 }
