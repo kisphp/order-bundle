@@ -14,6 +14,9 @@ use Kisphp\Entity\KisphpEntityInterface;
  */
 class SalesEntity implements KisphpEntityInterface, SalesEntityInterface
 {
+    const TYPE_PERSON = 'person';
+    const TYPE_COMPANY = 'company';
+
     /**
      * @var int
      *
