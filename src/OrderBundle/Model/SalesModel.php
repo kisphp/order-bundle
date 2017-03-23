@@ -80,7 +80,7 @@ abstract class SalesModel extends AbstractModel implements SalesModelInterface
 
         $salesEntity->setCompanyName($formData['company_name']);
         $salesEntity->setCompanyCif($formData['company_cif']);
-        $salesEntity->setCompanyRegNum($formData['company_registration_number']);
+        $salesEntity->setCompanyRegNum($formData['company_reg']);
         $salesEntity->setAddress($formData['address']);
         $salesEntity->setName($formData['name']);
         $salesEntity->setPhone($formData['phone']);
