@@ -52,62 +52,42 @@ interface SalesEntityInterface
     /**
      * @return string
      */
-    public function getCustomerName();
+    public function getName();
 
     /**
-     * @param string $customer_name
+     * @param string $name
      */
-    public function setCustomerName($customer_name);
-
-    /**
-     * @return string
-     */
-    public function getCustomerAddress();
-
-    /**
-     * @param string $customer_address
-     */
-    public function setCustomerAddress($customer_address);
+    public function setName($name);
 
     /**
      * @return string
      */
-    public function getCustomerPhone();
+    public function getAddress();
 
     /**
-     * @param string $customer_phone
+     * @param string $address
      */
-    public function setCustomerPhone($customer_phone);
-
-    /**
-     * @return string
-     */
-    public function getCustomerCountry();
-
-    /**
-     * @param string $customer_country
-     */
-    public function setCustomerCountry($customer_country);
+    public function setAddress($address);
 
     /**
      * @return string
      */
-    public function getCustomerCity();
+    public function getPhone();
 
     /**
-     * @param string $customer_city
+     * @param string $phone
      */
-    public function setCustomerCity($customer_city);
+    public function setPhone($phone);
 
     /**
      * @return string
      */
-    public function getCustomerEmail();
+    public function getEmail();
 
     /**
-     * @param string $customer_email
+     * @param string $email
      */
-    public function setCustomerEmail($customer_email);
+    public function setEmail($email);
 
     /**
      * @return string

@@ -3,7 +3,6 @@
 namespace Kisphp\OrderBundle\Model;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Kisphp\Entity\KisphpEntityInterface;
 use Kisphp\Model\AbstractModel;
 use Kisphp\OrderBundle\Entity\SalesEntity;
 use Kisphp\OrderBundle\Entity\SalesEntityInterface;
@@ -32,15 +31,15 @@ abstract class SalesModel extends AbstractModel implements SalesModelInterface
     /**
      * @param array $formData
      *
-     * @return SalesEntity
-     *
      * @throws MethodNotFound
+     *
+     * @return SalesEntity
      */
     public function createFromFormData(array $formData)
     {
         $method = 'populate' . ucfirst($formData['type']);
 
-        if ( ! method_exists($this, $method)) {
+        if (!method_exists($this, $method)) {
             throw new MethodNotFound();
         }
 
@@ -59,13 +58,12 @@ abstract class SalesModel extends AbstractModel implements SalesModelInterface
     protected function populatePerson($formData)
     {
         $salesEntity = $this->createSalesEntity();
+        $salesEntity->setType(SalesEntity::TYPE_PERSON);
 
-        $salesEntity->setCustomerName($formData['customer_name']);
-        $salesEntity->setCustomerEmail($formData['customer_email']);
-        $salesEntity->setCustomerPhone($formData['customer_phone']);
-        $salesEntity->setCustomerAddress($formData['customer_address']);
-        $salesEntity->setCustomerCountry($formData['customer_country']);
-        $salesEntity->setCustomerCity($formData['customer_city']);
+        $salesEntity->setAddress($formData['address']);
+        $salesEntity->setName($formData['name']);
+        $salesEntity->setPhone($formData['phone']);
+        $salesEntity->setEmail($formData['email']);
 
         return $salesEntity;
     }
@@ -78,10 +76,15 @@ abstract class SalesModel extends AbstractModel implements SalesModelInterface
     protected function populateCompany(array $formData)
     {
         $salesEntity = $this->createSalesEntity();
+        $salesEntity->setType(SalesEntity::TYPE_COMPANY);
 
         $salesEntity->setCompanyName($formData['company_name']);
         $salesEntity->setCompanyCif($formData['company_cif']);
         $salesEntity->setCompanyRegNum($formData['company_registration_number']);
+        $salesEntity->setAddress($formData['address']);
+        $salesEntity->setName($formData['name']);
+        $salesEntity->setPhone($formData['phone']);
+        $salesEntity->setEmail($formData['email']);
 
         return $salesEntity;
     }
@@ -120,21 +123,4 @@ abstract class SalesModel extends AbstractModel implements SalesModelInterface
     {
         return $this->getRepository()->findAll();
     }
-
-//    public function addProductToCart(KisphpEntityInterface $product, $quantity)
-//    {
-//        $order = $this->getCartBySessionId();
-//
-//        $orderItemModel = $this->factory->createSalesItemModel();
-//        $orderItem = $orderItemModel->createFromProduct($product, $order);
-//
-//        $orderItem->addQuantity($quantity);
-//
-//        dump($orderItem);
-//
-//        dump($order);
-//
-//        dump($product);
-//        die;
-//    }
 }

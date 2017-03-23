@@ -86,42 +86,28 @@ class SalesEntity implements KisphpEntityInterface, SalesEntityInterface
      *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $customer_name;
+    protected $name;
 
     /**
      * @var string
      *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $customer_address;
+    protected $address;
 
     /**
      * @var string
      *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $customer_phone;
+    protected $phone;
 
     /**
      * @var string
      *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $customer_country;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    protected $customer_city;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    protected $customer_email;
+    protected $email;
 
     public function __construct()
     {
@@ -213,97 +199,17 @@ class SalesEntity implements KisphpEntityInterface, SalesEntityInterface
     /**
      * @return string
      */
-    public function getCustomerName()
+    public function getName()
     {
-        return $this->customer_name;
+        return $this->name;
     }
 
     /**
-     * @param string $customer_name
+     * @param string $name
      */
-    public function setCustomerName($customer_name)
+    public function setName($name)
     {
-        $this->customer_name = $customer_name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCustomerAddress()
-    {
-        return $this->customer_address;
-    }
-
-    /**
-     * @param string $customer_address
-     */
-    public function setCustomerAddress($customer_address)
-    {
-        $this->customer_address = $customer_address;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCustomerPhone()
-    {
-        return $this->customer_phone;
-    }
-
-    /**
-     * @param string $customer_phone
-     */
-    public function setCustomerPhone($customer_phone)
-    {
-        $this->customer_phone = $customer_phone;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCustomerCountry()
-    {
-        return $this->customer_country;
-    }
-
-    /**
-     * @param string $customer_country
-     */
-    public function setCustomerCountry($customer_country)
-    {
-        $this->customer_country = $customer_country;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCustomerCity()
-    {
-        return $this->customer_city;
-    }
-
-    /**
-     * @param string $customer_city
-     */
-    public function setCustomerCity($customer_city)
-    {
-        $this->customer_city = $customer_city;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCustomerEmail()
-    {
-        return $this->customer_email;
-    }
-
-    /**
-     * @param string $customer_email
-     */
-    public function setCustomerEmail($customer_email)
-    {
-        $this->customer_email = $customer_email;
+        $this->name = $name;
     }
 
     /**
@@ -368,5 +274,69 @@ class SalesEntity implements KisphpEntityInterface, SalesEntityInterface
     public function setType($type)
     {
         $this->type = $type;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCompanyUsername()
+    {
+        return $this->company_username;
+    }
+
+    /**
+     * @param mixed $company_username
+     */
+    public function setCompanyUsername($company_username)
+    {
+        $this->company_username = $company_username;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param string $phone
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 }
